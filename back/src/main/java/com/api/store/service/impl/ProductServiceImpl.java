@@ -1,11 +1,14 @@
 package com.api.store.service.impl;
 
+import com.api.store.exception.ResourceNotFoundException;
+import com.api.store.model.Customer;
 import com.api.store.model.Product;
 import com.api.store.repository.ProductRepository;
 import com.api.store.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -19,5 +22,44 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public Product saveProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+    @Override
+    public Product getProductById(long id) {
+        Optional<Product> product = productRepository.findById(id);
+
+        return productRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Product", "Id", id));
+    }
+
+    @Override
+    public Product updateProduct(Product product, long id) {
+
+        // check if product exist
+        Product existProduct = productRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Product", "Id", id));
+
+        existProduct.setName(product.getName());
+        existProduct.setPrice(product.getPrice());
+        existProduct.setQuantity(product.getQuantity());
+
+        // save product to DB
+        productRepository.save(existProduct);
+        return existProduct;
+    }
+
+    @Override
+    public void deleteProduct(long id) {
+
+        // check if product exist
+        Product existProduct = productRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Product", "Id", id));
+
+        productRepository.deleteById(id);
     }
 }

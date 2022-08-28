@@ -24,6 +24,12 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
+    // build get customer by id
+    @GetMapping("{id}")
+    public ResponseEntity<Order> getOrderById(@PathVariable("id") long orderId) {
+        return new ResponseEntity<Order>(orderService.getOrderById(orderId), HttpStatus.OK);
+    }
+
     // build create order
     @PostMapping()
     public ResponseEntity<Order> saveOrder(@RequestBody Order order) {
