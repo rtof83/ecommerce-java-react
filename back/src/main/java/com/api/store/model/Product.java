@@ -3,6 +3,7 @@ package com.api.store.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -21,4 +22,8 @@ public class Product {
 
     @Column(name = "price", nullable = false)
     private Float price;
+
+//    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "productId", referencedColumnName = "id", nullable = false)
+//    private List<Item> items;
 }

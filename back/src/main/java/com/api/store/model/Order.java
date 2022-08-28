@@ -1,9 +1,11 @@
 package com.api.store.model;
 
 import lombok.Data;
+import lombok.NonNull;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,4 +27,8 @@ public class Order {
 
     @Column(name = "date", nullable = false)
     private Date date;
+
+    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "orderId", referencedColumnName = "id")
+    private List<Item> items;
 }

@@ -10,9 +10,10 @@ import javax.persistence.*;
 public class Item {
 
     @Id
-    private long orderId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    @Id
+    @Column(name = "productId", nullable = false)
     private long productId;
 
     @Column(name = "quantity", nullable = false)
