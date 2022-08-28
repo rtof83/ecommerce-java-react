@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import api from '../api';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ const ListCust = () => {
     const getData = async () => {
       setLoading(true);
 
-        await api.get('customer')
+        await api.get('customers')
           .then(({ data }) => {
             setData(data);
             setLoading(false);
@@ -33,11 +33,11 @@ const ListCust = () => {
     
       useEffect(() => {    
         getData();
-      }, [])
+      }, []);
 
       const deleteCustomer = async (id, name) => {
         if (window.confirm(`Excluir ${name}?`)) {
-          await api.delete(`customer/${id}`)
+          await api.delete(`customers/${id}`)
             .then(getData())
             .catch(e => console.log(e));
         }
@@ -67,8 +67,8 @@ const ListCust = () => {
                       {item.name}
                   </StyledTableCell>
                   <StyledTableCell align="center">{item.email}</StyledTableCell>
-                  <StyledTableCell align="right"><button onClick={() => navigate(`/customer/${item._id}`)}>Alterar</button></StyledTableCell>
-                  <StyledTableCell align="right"><button onClick={() => deleteCustomer(item._id, item.name)}>Excluir</button></StyledTableCell>
+                  <StyledTableCell align="right"><button onClick={() => navigate(`/customer/${item.id}`)}>Alterar</button></StyledTableCell>
+                  <StyledTableCell align="right"><button onClick={() => deleteCustomer(item.id, item.name)}>Excluir</button></StyledTableCell>
                   </StyledTableRow>
               ))}
               </TableBody>

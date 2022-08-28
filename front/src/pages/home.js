@@ -42,7 +42,7 @@ const Home = () => {
                             <CardFood id={item._id}
                                       image={item.image}
                                       name={item.name}
-                                      desc={item.desc}
+                                      descr={item.descr}
                                       price={item.price}
                                       quant={item.quantity} />
                         </Grid>

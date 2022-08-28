@@ -1,7 +1,6 @@
 package com.api.store.service.impl;
 
 import com.api.store.exception.ResourceNotFoundException;
-import com.api.store.model.Customer;
 import com.api.store.model.Product;
 import com.api.store.repository.ProductRepository;
 import com.api.store.service.ProductService;
@@ -30,23 +29,26 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProductById(long id) {
-        Optional<Product> product = productRepository.findById(id);
+    public Product getProductBySKU(String sku) {
+        Optional<Product> product = productRepository.findById(sku);
 
-        return productRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Product", "Id", id));
+        return productRepository.findById(sku).orElseThrow(() ->
+                new ResourceNotFoundException("Product", "sku", sku));
     }
 
     @Override
-    public Product updateProduct(Product product, long id) {
+    public Product updateProduct(Product product, String sku) {
 
         // check if product exist
-        Product existProduct = productRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Product", "Id", id));
+        Product existProduct = productRepository.findById(sku).orElseThrow(() ->
+                new ResourceNotFoundException("Product", "sku", sku));
 
+//        existProduct.setSku(product.getSku());
         existProduct.setName(product.getName());
         existProduct.setPrice(product.getPrice());
         existProduct.setQuantity(product.getQuantity());
+        existProduct.setDescr(product.getDescr());
+        existProduct.setImage(product.getImage());
 
         // save product to DB
         productRepository.save(existProduct);
@@ -54,12 +56,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProduct(long id) {
+    public void deleteProduct(String sku) {
 
         // check if product exist
-        Product existProduct = productRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Product", "Id", id));
+        Product existProduct = productRepository.findById(sku).orElseThrow(() ->
+                new ResourceNotFoundException("Product", "sku", sku));
 
-        productRepository.deleteById(id);
+        productRepository.deleteById(sku);
     }
 }

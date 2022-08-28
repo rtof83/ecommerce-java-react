@@ -3,8 +3,7 @@ package com.api.store.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -31,5 +30,5 @@ public class Customer {
     private String phone;
 
     @Column(name = "birth", nullable = false)
-    private Date birth;
+    private LocalDate birth;
 }

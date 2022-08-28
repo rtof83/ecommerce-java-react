@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import Foods from '../assets/foods.png';
@@ -9,14 +9,15 @@ import Avatar from '@mui/material/Avatar';
 import api from '../api';
 
 const Product = () => {
-    const [values, setValues] = useState({ name: '',
-                                           desc: '',
-                                           quant: '',
+    const [values, setValues] = useState({ sku: '',
+                                           name: '',
+                                           descr: '',
+                                           quantity: '',
                                            price: '',
                                            image: '' });
 
     const navigate = useNavigate();
-    const { id } = useParams();
+    const { sku } = useParams();
 
     const [ showImage, setShowImage ] = useState(Foods);
     const checkImage = (img) => {
@@ -34,32 +35,36 @@ const Product = () => {
     }
 
     const insertProduct = async () => {
-      if (!values.name || !values.quant || !values.price) {
+      if (!values.sku || !values.name || !values.quantity || !values.price) {
         alert('Atenção! Os campos obrigatórios devem ser preenchidos.')
       } else {
-        const product = { name: values.name,
-                          desc: values.desc,
-                          quant: values.quant,
+        const product = { sku: values.sku,
+                          name: values.name,
+                          descr: values.descr,
+                          quantity: values.quantity,
                           price: values.price,
                           image: values.image };
 
-        if (id) {
-          await api.patch(`/product/${id}`, product)
-            .then(navigate('/listProd'));
+        if (sku) {
+          await api.put(`products/${sku}`, product)
+            .then(navigate('/listProd'))
+            .catch(e => console.log(e));
         } else {
-          await api.post('/product', product)
-            .then(navigate('/listProd'));
+          await api.post('products', product)
+            .then(navigate('/listProd'))
+            .catch(e => console.log(e));;
         } 
       }
     }
 
     const getProduct = async () => {
-      if (id) {
-        await api.get(`product/${id}`)
+      if (sku) {
+        await api.get(`products/${sku}`)
           .then(({ data }) => {
-            setValues({ name: data.name,
-                        desc: data.desc,
-                        quant: data.quant,
+            setValues({ sku: data.sku,
+                        name: data.name,
+                        descr: data.descr,
+                        quantity: data.quantity,
                         price: data.price,
                         image: data.image });
           })
@@ -83,10 +88,10 @@ const Product = () => {
                 alignItems="stretch"
                 className="gridCustomer">
 
-              { id && <TextField id="outlined-basic" label="Id" variant="outlined" value={id} disabled /> }
+              <TextField id="outlined-basic" label="SKU" variant="outlined" value={values.sku} onChange={e => setValues({...values, sku: e.target.value})} disabled={sku} />
               <TextField id="outlined-basic" label="Nome" variant="outlined" value={values.name} onChange={e => setValues({...values, name: e.target.value})} />
-              <TextField id="outlined-basic" label="Descrição" variant="outlined" value={values.desc} onChange={e => setValues({...values, desc: e.target.value})} />
-              <TextField id="outlined-basic" label="Quantidade" variant="outlined" value={values.quant} onChange={e => setValues({...values, quant: e.target.value})} />
+              <TextField id="outlined-basic" label="Descrição" variant="outlined" value={values.descr} onChange={e => setValues({...values, descr: e.target.value})} />
+              <TextField id="outlined-basic" label="Quantidade" variant="outlined" value={values.quantity} onChange={e => setValues({...values, quantity: e.target.value})} />
               <TextField id="outlined-basic" label="Preço" variant="outlined" value={values.price} onChange={e => setValues({...values, price: e.target.value})} />
               <TextField id="outlined-basic" label="Imagem (link)" variant="outlined" value={values.image} onChange={e => checkImage(e.target.value)} />
           

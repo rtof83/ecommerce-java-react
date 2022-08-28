@@ -3,7 +3,6 @@ package com.api.store.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
@@ -11,8 +10,8 @@ import java.util.List;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(nullable = false, length = 50)
+    private String sku;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -22,6 +21,12 @@ public class Product {
 
     @Column(name = "price", nullable = false)
     private Float price;
+
+    @Column(name = "descr")
+    private String descr;
+
+    @Column(name = "image")
+    private String image;
 
 //    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
 //    @JoinColumn(name = "productId", referencedColumnName = "id", nullable = false)

@@ -32,21 +32,21 @@ public class ProductController {
     }
 
     // build get product by id
-    @GetMapping("{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable("id") long productId) {
-        return new ResponseEntity<Product>(productService.getProductById(productId), HttpStatus.OK);
+    @GetMapping("{sku}")
+    public ResponseEntity<Product> getProductBySKU(@PathVariable("sku") String sku) {
+        return new ResponseEntity<Product>(productService.getProductBySKU(sku), HttpStatus.OK);
     }
 
     //build update customer
-    @PutMapping("{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
-        return new ResponseEntity<Product>(productService.updateProduct(product, id), HttpStatus.OK);
+    @PutMapping("{sku}")
+    public ResponseEntity<Product> updateProduct(@PathVariable("sku") String sku, @RequestBody Product product) {
+        return new ResponseEntity<Product>(productService.updateProduct(product, sku), HttpStatus.OK);
     }
 
     // build delete customer
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable("id") long id) {
-        productService.deleteProduct(id);
+    @DeleteMapping("{sku}")
+    public ResponseEntity<String> deleteProduct(@PathVariable("sku") String sku) {
+        productService.deleteProduct(sku);
         return new ResponseEntity<String>("Product deleted successfully", HttpStatus.OK);
     }
 }

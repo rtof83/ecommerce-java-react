@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import api from '../api';
 
@@ -14,30 +14,38 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const Customer = () => {
-    const [values, setValues] = useState({ name: '',
-                                           address: '',
-                                           email: '',
-                                           pass: '' });
+    const [ values, setValues ] = useState({ name: '',
+                                             address: '',
+                                             email: '',
+                                             cpf: '',
+                                             phone: '',
+                                             birth: '' });
 
     const navigate = useNavigate();
     const { id } = useParams();
 
+    // const [ showDate, setShowDate ] = useState('');
+    const datateste = new Date('1996-01-01T00:00:00.000+00:00');
+
     const insertCustomer = async () => {
-      if (!values.name || !values.address || !values.pass) {
+      if (!values.name || !values.address || !values.cpf) {
         alert('Atenção! Os campos obrigatórios devem ser preenchidos.')
       } else {
         const customer = { name: values.name,
                            address: values.address,
                            email: values.email,
-                           password: values.pass,
-                           access: 'user' };
+                           cpf: values.cpf,
+                           phone: values.phone,
+                           birth: values.birth };
                            
         if (id) {
-          await api.patch(`/customer/${id}`, customer)
-            .then(navigate('/listCust'));
+          await api.put(`customers/${id}`, customer)
+            .then(navigate('/listCust'))
+            .catch(e => console.log(e));
         } else {
-          await api.post('/customer', customer)
-            .then(navigate('/listCust'));
+          await api.post('customers', customer)
+            .then(navigate('/listCust'))
+            .catch(e => console.log(e));
         }
       }
     }
@@ -55,16 +63,23 @@ const Customer = () => {
 
       const getCustomer = async () => {
         if (id) {
-          await api.get(`customer/${id}`)
+          await api.get(`customers/${id}`)
             .then(({ data }) => {
               setValues({ name: data.name,
                           address: data.address,
                           email: data.email,
-                          pass: data.password });
+                          cpf: data.cpf,
+                          phone: data.phone,
+                          birth: data.birth });
             })
             .catch(e => console.log(e));
         }
       }
+
+      useEffect(() => {
+        // setShowDate(values.birth);
+        console.log(values.birth);
+      }, [values]);
 
       useEffect(() => {
         getCustomer();
@@ -73,6 +88,16 @@ const Customer = () => {
       return (
         <>
         <h3>Cadastro de Clientes</h3>
+
+        {/* -------------------------------- */}
+        <br /> variavel birth <span />
+        {values.birth}
+        <br /> pt-br <span />
+        {new Date(datateste.getFullYear(), datateste.getMonth(), datateste.getDate()).toLocaleDateString('pt-BR')}
+        <br /> us <span />
+        {/* {new Date('31-12-1983'.split('-').reverse().join('-'))} */}
+        {'31-12-1983'.split('-').reverse().join('-')}
+        {/* -------------------------------- */}
 
         <div className="gridCustomer">
 
@@ -87,7 +112,10 @@ const Customer = () => {
             <TextField required id="outlined-basic" label="Nome" variant="outlined" value={values.name} onChange={e => setValues({...values, name: e.target.value})} />
             <TextField id="outlined-basic" label="Endereço" variant="outlined" value={values.address} onChange={e => setValues({...values, address: e.target.value})} />
             <TextField required id="outlined-basic" label="E-mail" variant="outlined" value={values.email} onChange={e => setValues({...values, email: e.target.value})} />
-        
+            <TextField required id="outlined-basic" label="CPF" variant="outlined" value={values.cpf} onChange={e => setValues({...values, cpf: e.target.value})} />
+            <TextField required id="outlined-basic" label="Telefone" variant="outlined" value={values.phone} onChange={e => setValues({...values, phone: e.target.value})} />
+            <TextField type="date" required id="outlined-basic" label="Nascimento" variant="outlined" value={values.birth} onChange={e => setValues({...values, birth: e.target.value})} />
+
             <FormControl required variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
               <OutlinedInput

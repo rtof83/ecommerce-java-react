@@ -1,10 +1,9 @@
 package com.api.store.model;
 
 import lombok.Data;
-import lombok.NonNull;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -26,7 +25,7 @@ public class Order {
     private Float total;
 
     @Column(name = "date", nullable = false)
-    private Date date;
+    private LocalDateTime date;
 
     @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "orderId", referencedColumnName = "id")
