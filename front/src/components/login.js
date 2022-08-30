@@ -9,14 +9,15 @@ import TextField from '@mui/material/TextField';
 
 const Login = () => {
 
-    const [ values, setValues ] = useState({ email: '', pass: '' });
+    const [ values, setValues ] = useState({ email: '', password: '' });
     const [ user, setUser ] = useContext(UserContext);
     const { cart } = useParams();
     const navigate = useNavigate();
 
     const getUser = async () => {
-        await api.get('customers/getUser', { email: values.email, password: values.pass })
+        await api.post('customers/login', { email: values.email, password: values.password })
           .then(({ data }) => {
+            console.log(data);
             if (data.length > 0) {
               setUser(data[0]);
               cart ? navigate('/cart') : navigate('/');
@@ -42,7 +43,7 @@ const Login = () => {
               className="gridCustomer">
 
             <TextField id="outlined-basic" label="Email" variant="outlined" value={values.email} onChange={e => setValues({...values, email: e.target.value})} />
-            <TextField id="outlined-basic" label="Senha" variant="outlined" type="password" value={values.pass} onChange={e => setValues({...values, pass: e.target.value})} />
+            <TextField id="outlined-basic" label="Senha" variant="outlined" type="password" value={values.password} onChange={e => setValues({...values, password: e.target.value})} />
         
         </Grid>
 

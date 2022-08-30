@@ -36,7 +36,8 @@ const Customer = () => {
                            email: values.email,
                            cpf: values.cpf,
                            phone: values.phone,
-                           birth: values.birth };
+                           birth: values.birth,
+                           password: values.password };
                            
         if (id) {
           await api.put(`customers/${id}`, customer)
@@ -70,7 +71,8 @@ const Customer = () => {
                           email: data.email,
                           cpf: data.cpf,
                           phone: data.phone,
-                          birth: data.birth });
+                          birth: data.birth,
+                          password: data.password });
             })
             .catch(e => console.log(e));
         }
@@ -121,7 +123,7 @@ const Customer = () => {
               <OutlinedInput
                 id="outlined-adornment-password"
                 type={values.showPassword ? 'text' : 'password'}
-                value={values.pass}
+                value={values.password}
                 onChange={e => setValues({...values, pass: e.target.value})}
                 endAdornment={
                   <InputAdornment position="end">
