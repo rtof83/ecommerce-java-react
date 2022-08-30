@@ -1,4 +1,4 @@
-import { React, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../api';
 import UserContext from '../contexts/UserContext';
@@ -15,7 +15,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const getUser = async () => {
-        await api.post('customer/getUser', { email: values.email, password: values.pass })
+        await api.get('customers/getUser', { email: values.email, password: values.pass })
           .then(({ data }) => {
             if (data.length > 0) {
               setUser(data[0]);

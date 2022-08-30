@@ -10,4 +10,5 @@ public interface CustomerService {
     Customer getCustomerById(long id);
     Customer updateCustomer(Customer customer, long id);
     void deleteCustomer(long id);
+    List<Customer> login(String email, String password);
 }

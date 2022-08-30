@@ -31,4 +31,7 @@ public class Customer {
 
     @Column(name = "birth", nullable = false)
     private LocalDate birth;
+
+    @Column(name = "password", nullable = false, length = 16)
+    private String password;
 }

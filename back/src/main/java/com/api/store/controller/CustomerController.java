@@ -25,6 +25,12 @@ public class CustomerController {
         return new ResponseEntity<Customer>(customerService.saveCustomer(customer), HttpStatus.CREATED);
     }
 
+//     build get login
+    @GetMapping("login")
+    public ResponseEntity<List<Customer>> loginCustomer(@RequestBody Customer customer) {
+        return new ResponseEntity(customerService.login(customer.getEmail(), customer.getPassword()), HttpStatus.OK);
+    }
+
     // build get all customers
     @GetMapping
     public List<Customer> getAllCustomers() {
@@ -49,4 +55,9 @@ public class CustomerController {
         customerService.deleteCustomer(id);
         return new ResponseEntity<String>("Customer deleted successfully", HttpStatus.OK);
     }
+
+//    @GetMapping("login/{id}")
+//    public ResponseEntity<Customer> login(@PathVariable("id") long customerId) {
+//        return new ResponseEntity<Customer>(customerService.login(customerId), HttpStatus.OK);
+//    }
 }

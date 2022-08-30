@@ -22,7 +22,7 @@ const ListOrder = () => {
     const getData = async () => {
       setLoading(true);
 
-        await api.get('join')
+        await api.get('orders/join')
           .then(({ data }) => {
             setData(data);
             setLoading(false);

@@ -55,6 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
         existCustomer.setEmail(customer.getEmail());
         existCustomer.setBirth(customer.getBirth());
         existCustomer.setPhone(customer.getPhone());
+        existCustomer.setPassword(customer.getPassword());
 
         // save customer to DB
         customerRepository.save(existCustomer);
@@ -69,5 +70,10 @@ public class CustomerServiceImpl implements CustomerService {
                 new ResourceNotFoundException("Customer", "Id", id));
 
         customerRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Customer> login(String email, String password) {
+        return customerRepository.login(email, password);
     }
 }

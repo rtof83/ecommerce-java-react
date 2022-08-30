@@ -11,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/join")
+@RequestMapping("/api/orders/join")
 public class JoinController {
     private JoinService joinService;
 
