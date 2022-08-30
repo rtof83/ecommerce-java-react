@@ -15,7 +15,7 @@ const Home = () => {
     const list = useContext(ListContext);
 
     const getProducts = async () => {
-        await api.get('api/products')
+        await api.get('products')
             .then(({ data }) => {
                 console.log(data);
                 setData(data)
@@ -39,7 +39,7 @@ const Home = () => {
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                         { data.map((item, index) => (
                         <Grid item xs={2} sm={4} md={4} key={index}>
-                            <CardFood id={item._id}
+                            <CardFood id={item.sku}
                                       image={item.image}
                                       name={item.name}
                                       descr={item.descr}

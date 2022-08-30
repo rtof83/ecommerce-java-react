@@ -13,8 +13,8 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "SKU", nullable = false)
-    private String SKU;
+    @Column(name = "sku", nullable = false, length = 50)
+    private String sku;
 
     @Column(name = "quantity", nullable = false)
     private Integer quantity;

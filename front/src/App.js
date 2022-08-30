@@ -10,8 +10,6 @@ import Header from './components/header';
 import UserContext from './contexts/UserContext';
 import ListContext from './contexts/ListContext';
 
-import Teste from './pages/teste';
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/login';
 import Cart from './pages/cart';

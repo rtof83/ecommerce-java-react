@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import api from '../api';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -23,22 +23,22 @@ const ListCust = () => {
     const getData = async () => {
       setLoading(true);
 
-        await api.get('customers')
+      await api.get('customers')
           .then(({ data }) => {
             setData(data);
             setLoading(false);
           })
           .catch(e => console.log(e));
-      }
-    
-      useEffect(() => {    
+      };
+
+      useEffect(() => {
         getData();
       }, []);
 
       const deleteCustomer = async (id, name) => {
         if (window.confirm(`Excluir ${name}?`)) {
           await api.delete(`customers/${id}`)
-            .then(getData())
+            .then(() => getData())
             .catch(e => console.log(e));
         }
       }

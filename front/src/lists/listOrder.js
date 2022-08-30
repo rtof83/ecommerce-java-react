@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import api from '../api';
 import { Link } from 'react-router-dom';
 
@@ -22,13 +22,13 @@ const ListOrder = () => {
     const getData = async () => {
       setLoading(true);
 
-        await api.get('order')
+        await api.get('join')
           .then(({ data }) => {
             setData(data);
             setLoading(false);
           })
           .catch(e => console.log(e));
-      }
+      };
     
       useEffect(() => {    
         getData();
@@ -37,7 +37,7 @@ const ListOrder = () => {
       const deleteOrder = async (id) => {
         if (window.confirm(`Excluir pedido ${id}?`)) {
           await api.delete(`order/${id}`)
-            .then(getData())
+            .then(() => getData())
             .catch(e => console.log(e));
         }
       }
@@ -56,22 +56,24 @@ const ListOrder = () => {
                   <StyledTableCell align="left">Pedido</StyledTableCell>
                   <StyledTableCell align="left">Total</StyledTableCell>
                   <StyledTableCell align="center">Cliente</StyledTableCell>
-                  <StyledTableCell align="center">Pagamento</StyledTableCell>
+                  <StyledTableCell align="center">Data</StyledTableCell>
+                  <StyledTableCell align="center">Itens</StyledTableCell>
                   <StyledTableCell align="right" />
               </TableRow>
               </TableHead>
               <TableBody>
               {data.map((item) => (
-                  <StyledTableRow key={item._id}>
+                  <StyledTableRow key={item.id}>
 
-                  <StyledTableCell align="left">{item._id}</StyledTableCell>
+                  <StyledTableCell align="left">{item.id}</StyledTableCell>
 
                   <StyledTableCell align="left" component="th" scope="row">
                       {item.total.toFixed(2)}
                   </StyledTableCell>
                   <StyledTableCell align="center">{item.customer}</StyledTableCell>
-                  <StyledTableCell align="center">{item.pay}</StyledTableCell>
-                  <StyledTableCell align="right"><button onClick={() => deleteOrder(item._id)}>Excluir</button></StyledTableCell>
+                  <StyledTableCell align="center">{new Date(item.date).toLocaleDateString('pt-BR')}</StyledTableCell>
+                  <StyledTableCell align="center">{item.items.map(i => <StyledTableCell align="center">{i.sku}</StyledTableCell>)}</StyledTableCell>
+                  <StyledTableCell align="right"><button onClick={() => deleteOrder(item.id)}>Excluir</button></StyledTableCell>
                   </StyledTableRow>
               ))}
               </TableBody>
@@ -90,7 +92,7 @@ const ListOrder = () => {
           </Link>
         </Grid>
 
-        : </> }
+        </> }
     </div>
   );
 }

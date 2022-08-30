@@ -37,10 +37,10 @@ const ListProd = () => {
         getData();
       }, []);
 
-      const deleteProduct = async (SKU, name) => {
+      const deleteProduct = async (sku, name) => {
         if (window.confirm(`Excluir ${name}?`)) {
-          await api.delete(`products/${SKU}`)
-            .then(getData())
+          await api.delete(`products/${sku}`)
+            .then(() => getData())
             .catch(e => console.log(e));
         }
       }
@@ -64,6 +64,7 @@ const ListProd = () => {
               <TableHead>
               <TableRow>
                   <StyledTableCell align="left"></StyledTableCell>
+                  <StyledTableCell align="center">SKU</StyledTableCell>
                   <StyledTableCell align="left">Nome</StyledTableCell>
                   <StyledTableCell align="center">Quantidade</StyledTableCell>
                   <StyledTableCell align="center">Preço</StyledTableCell>
@@ -73,7 +74,7 @@ const ListProd = () => {
               </TableHead>
               <TableBody>
               {data.map((item) => (
-                  <StyledTableRow key={item.SKU}>
+                  <StyledTableRow key={item.sku}>
 
                   <StyledTableCell align="left">
                     <Avatar alt="food"
@@ -82,6 +83,7 @@ const ListProd = () => {
                           />
                   </StyledTableCell>
 
+                  <StyledTableCell align="center">{item.sku}</StyledTableCell>
                   <StyledTableCell align="left" component="th" scope="row">
                       {item.name}
                   </StyledTableCell>

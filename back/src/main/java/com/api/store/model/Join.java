@@ -8,15 +8,15 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="orders")
-public class Order {
+//@Table(name="join")
+public class Join {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "customerId", nullable = false)
-    private long customerId;
+    @Column(name = "customer", nullable = false)
+    private String customer;
 
     @Column(name = "address", nullable = false)
     private String address;
