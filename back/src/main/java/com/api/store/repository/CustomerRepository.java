@@ -9,11 +9,6 @@ import java.util.List;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-//    @Query(value = "SELECT id, name " +
-//                   "FROM customers " +
-//                   "WHERE email = :email AND password = :password", nativeQuery = true)
-//    List<Customer> login(@Param("email") String email, @Param("password") String password);
-
     @Query(value = "SELECT * FROM customers " +
                    "WHERE email = :email AND password = :password", nativeQuery = true)
     List<Customer> login(@Param("email") String email, @Param("password") String password);

@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface JoinRepository extends JpaRepository<Join, Long> {
 
-
-
     @Query(value = "SELECT O.id, C.name AS customer, O.address, O.total, O.date\n" +
                    "FROM orders O\n" +
                    "INNER JOIN customers C\n" +

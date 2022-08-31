@@ -24,8 +24,11 @@ public class Order {
     @Column(name = "total", nullable = false)
     private Float total;
 
-    @Column(name = "date")
+    @Column(name = "date", nullable = false)
     private Date date;
+
+    @Column(name = "payment", nullable = false, length = 30)
+    private String payment;
 
     @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "orderId", referencedColumnName = "id")

@@ -31,7 +31,7 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    // build get product by id
+    // build get product by sku
     @GetMapping("{sku}")
     public ResponseEntity<Product> getProductBySKU(@PathVariable("sku") String sku) {
         return new ResponseEntity<Product>(productService.getProductBySKU(sku), HttpStatus.OK);

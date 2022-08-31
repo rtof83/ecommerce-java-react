@@ -25,9 +25,9 @@ public class CustomerController {
         return new ResponseEntity<Customer>(customerService.saveCustomer(customer), HttpStatus.CREATED);
     }
 
-//     build get login
+    // build get login
     @PostMapping("login")
-    public ResponseEntity<List<Customer>> loginCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<List> loginCustomer(@RequestBody Customer customer) {
         return new ResponseEntity(customerService.login(customer.getEmail(), customer.getPassword()), HttpStatus.OK);
     }
 

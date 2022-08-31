@@ -17,7 +17,7 @@ const Home = () => {
     const getProducts = async () => {
         await api.get('products')
             .then(({ data }) => {
-                console.log(data);
+                // console.log(data);
                 setData(data)
             })
             .catch(e => console.log(e));
@@ -39,12 +39,12 @@ const Home = () => {
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                         { data.map((item, index) => (
                         <Grid item xs={2} sm={4} md={4} key={index}>
-                            <CardFood id={item.sku}
+                            <CardFood sku={item.sku}
                                       image={item.image}
                                       name={item.name}
                                       descr={item.descr}
                                       price={item.price}
-                                      quant={item.quantity} />
+                                      quantity={item.quantity} />
                         </Grid>
                         ))}
                     </Grid>
