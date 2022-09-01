@@ -39,6 +39,7 @@
         - http://44.197.170.12:8080`;
 
 ### Implementações API:
+- [Collections Postman](https://github.com/rtof83/ecommerce-java-react/blob/main/samples/ecommerce.postman_collection.json);
 - `Rotas de acesso (para os métodos GET, POST, DELETE E PUT):`
     - `{baseURL}/api/customers -> retorna, cria, atualiza, exclui clientes`;
     - `{baseURL}/api/products -> retorna, cria, atualiza, exclui produtos`;
@@ -46,7 +47,8 @@
     - `{baseURL}/orders -> retorna, cria e exclui pedidos`;
 - `Rotas de busca:`
     - `{baseURL}/api/{rota}/:id -> retorna registro por ID`;
-- `após inserção de pedidos, a quantidade de produtos é atualizada`;
+    - `{baseURL}/api/products/sku -> retorna produto por sku`;
+- `após inserção de pedidos, a quantidade de produtos é atualizada (é verificado se quantidade solicitada é igual ou menor que o estoque)`;
 
 ### Implementações FRONT:
 - `Cadastro, alteração e exclusão de Cliente`;
