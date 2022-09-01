@@ -7,7 +7,7 @@
 - `Ferramentas:`
     - `IntelliJ IDEA 2022.2.1 (Community Edition)`;
     - `Visual Studio Code 1.7.0.2`;
-    - `Console de operações da AWS`;
+    - `Console de Gerenciamento da AWS`;
 
 ## Estrutura da base de dados:
 - [database.sql](https://github.com/rtof83/ecommerce-java-react/blob/main/samples/database.sql);
