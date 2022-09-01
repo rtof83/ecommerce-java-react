@@ -46,14 +46,16 @@ const Product = () => {
                           image: values.image };
 
         if (sku) {
+          console.log('put')
           await api.put(`products/${sku}`, product)
             .then(navigate('/listProd'))
             .catch(e => console.log(e));
         } else {
+          console.log('post')
           await api.post('products', product)
             .then(navigate('/listProd'))
             .catch(e => console.log(e));;
-        } 
+        }
       }
     }
 

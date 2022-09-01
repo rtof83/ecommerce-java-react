@@ -26,10 +26,11 @@ CREATE TABLE IF NOT EXISTS `customers` (
   UNIQUE KEY `UK_rfbvkrffamfql7cjmen8v976v` (`email`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Copiando dados para a tabela database.customers: 3 rows
+-- Copiando dados para a tabela database.customers: 2 rows
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
 INSERT INTO `customers` (`id`, `address`, `birth`, `cpf`, `email`, `name`, `password`, `phone`) VALUES
-	(1, 'Endereço do Cliente 01', '1999-01-01', '99999999999', 'cliente01@teste.com.br', 'Cliente 01', '123', '(99) 99999-9999');
+	(1, 'Endereço do Cliente 01', '1999-01-01', '99999999999', 'cliente01@teste.com.br', 'Cliente 01', '123', '(99) 99999-9999'),
+	(2, 'admin address', '1999-01-01', '99999999999', 'admin', 'admin', 'admin', '(99) 99999-9999');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela database.items

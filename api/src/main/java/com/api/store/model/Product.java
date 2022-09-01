@@ -27,8 +27,4 @@ public class Product {
 
     @Column(name = "image")
     private String image;
-
-//    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "productId", referencedColumnName = "id", nullable = false)
-//    private List<Item> items;
 }

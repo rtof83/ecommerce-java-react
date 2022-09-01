@@ -124,7 +124,7 @@ const Customer = () => {
                 id="outlined-adornment-password"
                 type={values.showPassword ? 'text' : 'password'}
                 value={values.password}
-                onChange={e => setValues({...values, pass: e.target.value})}
+                onChange={e => setValues({...values, password: e.target.value})}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
