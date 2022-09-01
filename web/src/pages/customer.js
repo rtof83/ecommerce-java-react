@@ -114,8 +114,8 @@ const Customer = () => {
             <TextField required id="outlined-basic" label="Nome" variant="outlined" value={values.name} onChange={e => setValues({...values, name: e.target.value})} />
             <TextField id="outlined-basic" label="Endereço" variant="outlined" value={values.address} onChange={e => setValues({...values, address: e.target.value})} />
             <TextField required id="outlined-basic" label="E-mail" variant="outlined" value={values.email} onChange={e => setValues({...values, email: e.target.value})} />
-            <TextField required id="outlined-basic" label="CPF" variant="outlined" value={values.cpf} onChange={e => setValues({...values, cpf: e.target.value})} />
-            <TextField required id="outlined-basic" label="Telefone" variant="outlined" value={values.phone} onChange={e => setValues({...values, phone: e.target.value})} />
+            <TextField required id="outlined-basic" label="CPF" type="number" size="11" variant="outlined" value={values.cpf} onChange={e => setValues({...values, cpf: e.target.value})} />
+            <TextField required id="outlined-basic" label="Telefone" size="16" variant="outlined" value={values.phone} onChange={e => setValues({...values, phone: e.target.value})} />
             <TextField type="date" required id="outlined-basic" label="Nascimento" variant="outlined" value={values.birth} onChange={e => setValues({...values, birth: e.target.value})} />
 
             <FormControl required variant="outlined">

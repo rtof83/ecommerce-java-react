@@ -36,7 +36,7 @@
     - `Banco de Dados instanciado no AWS RDS:`
         - database.c1pcbwgspp7k.us-east-1.rds.amazonaws.com:3306;
     - `API instanciada em EC2 AWS:`
-        - http://3.231.26.124:8080`;
+        - http://3.231.26.124:8080;
 
 ### Implementações API:
 - [Collections Postman](https://github.com/rtof83/ecommerce-java-react/blob/main/samples/ecommerce.postman_collection.json);

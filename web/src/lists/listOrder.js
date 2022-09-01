@@ -72,7 +72,8 @@ const ListOrder = () => {
                   </StyledTableCell>
                   <StyledTableCell align="center">{item.customer.name}</StyledTableCell>
                   <StyledTableCell align="center">{new Date(item.date).toLocaleDateString('pt-BR')}</StyledTableCell>
-                  <StyledTableCell align="center">{item.items.map(i => <StyledTableCell align="center">{i.quantity} x {i.sku}</StyledTableCell>)}</StyledTableCell>
+                  <StyledTableCell align="center">{item.items.map(i => <StyledTableCell align="center">             
+                    {i.quantity} x {i.sku}</StyledTableCell>)}</StyledTableCell>
                   <StyledTableCell align="right"><button onClick={() => deleteOrder(item.id)}>Excluir</button></StyledTableCell>
                   </StyledTableRow>
               ))}

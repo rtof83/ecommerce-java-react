@@ -93,8 +93,8 @@ const Product = () => {
               <TextField id="outlined-basic" label="SKU" variant="outlined" value={values.sku} onChange={e => setValues({...values, sku: e.target.value})} disabled={sku} />
               <TextField id="outlined-basic" label="Nome" variant="outlined" value={values.name} onChange={e => setValues({...values, name: e.target.value})} />
               <TextField id="outlined-basic" label="Descrição" variant="outlined" value={values.descr} onChange={e => setValues({...values, descr: e.target.value})} />
-              <TextField id="outlined-basic" label="Quantidade" variant="outlined" value={values.quantity} onChange={e => setValues({...values, quantity: e.target.value})} />
-              <TextField id="outlined-basic" label="Preço" variant="outlined" value={values.price} onChange={e => setValues({...values, price: e.target.value})} />
+              <TextField id="outlined-basic" label="Quantidade" type="number" variant="outlined" value={values.quantity} onChange={e => setValues({...values, quantity: e.target.value})} />
+              <TextField id="outlined-basic" label="Preço" type="number" variant="outlined" value={values.price} onChange={e => setValues({...values, price: e.target.value})} />
               <TextField id="outlined-basic" label="Imagem (link)" variant="outlined" value={values.image} onChange={e => checkImage(e.target.value)} />
           
         <Avatar className="avatarFood"
