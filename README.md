@@ -64,7 +64,7 @@
     - `{baseURL}/api/products/sku -> retorna produto por sku`;
 
 - `Inserção de pedidos:`
-    - `data e hora atual inserida através da API`;
+    - `total do pedido e data e hora atual inseridos através da API`;
     - `a quantidade de produtos é atualizada de forma automatizada (é verificado se a quantidade solicitada é igual ou menor que o estoque)`;
 
     &nbsp;
