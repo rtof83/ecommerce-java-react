@@ -17,7 +17,6 @@ const Home = () => {
     const getProducts = async () => {
         await api.get('products')
             .then(({ data }) => {
-                // console.log(data);
                 setData(data)
             })
             .catch(e => console.log(e));

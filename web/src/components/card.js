@@ -11,7 +11,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import Foods from '../assets/foods.png';
 import ListContext from '../contexts/ListContext';
 
-const CardFood = ({ sku, image, name, desc, price, quantity }) => {
+const CardFood = ({ sku, image, name, descr, price, quantity }) => {
   const [ list, setList ] = useContext(ListContext);
   const navigate = useNavigate();
 
@@ -44,7 +44,7 @@ const CardFood = ({ sku, image, name, desc, price, quantity }) => {
 
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {desc}
+          {descr}
         </Typography>
       </CardContent>
 

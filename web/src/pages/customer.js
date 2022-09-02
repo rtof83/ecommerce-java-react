@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import checkCPF from '../components/cpf';
 
 import api from '../api';
 
@@ -27,6 +28,10 @@ const Customer = () => {
     const { id } = useParams();
 
     const insertCustomer = async () => {
+      if (!checkCPF(values.cpf)) {
+        return alert('CPF inválido. O campo deve conter 9 dígitos sem pontos e traço.');
+      }
+
       if (!values.name || !values.address || !values.cpf) {
         alert('Atenção! Os campos obrigatórios devem ser preenchidos.')
       } else {
