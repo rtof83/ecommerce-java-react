@@ -48,12 +48,12 @@ const Product = () => {
         if (sku) {
           console.log('put')
           await api.put(`products/${sku}`, product)
-            .then(navigate('/listProd'))
+            .then(() => navigate('/listProd'))
             .catch(e => console.log(e));
         } else {
           console.log('post')
           await api.post('products', product)
-            .then(navigate('/listProd'))
+            .then(() => navigate('/listProd'))
             .catch(e => console.log(e));;
         }
       }
@@ -90,12 +90,12 @@ const Product = () => {
                 alignItems="stretch"
                 className="gridCustomer">
 
-              <TextField id="outlined-basic" label="SKU" variant="outlined" value={values.sku} onChange={e => setValues({...values, sku: e.target.value})} disabled={sku} />
-              <TextField id="outlined-basic" label="Nome" variant="outlined" value={values.name} onChange={e => setValues({...values, name: e.target.value})} />
-              <TextField id="outlined-basic" label="Descrição" variant="outlined" value={values.descr} onChange={e => setValues({...values, descr: e.target.value})} />
-              <TextField id="outlined-basic" label="Quantidade" type="number" variant="outlined" value={values.quantity} onChange={e => setValues({...values, quantity: e.target.value})} />
-              <TextField id="outlined-basic" label="Preço" type="number" variant="outlined" value={values.price} onChange={e => setValues({...values, price: e.target.value})} />
-              <TextField id="outlined-basic" label="Imagem (link)" variant="outlined" value={values.image} onChange={e => checkImage(e.target.value)} />
+              <TextField id="txtSKU" label="SKU" variant="outlined" value={values.sku} onChange={e => setValues({...values, sku: e.target.value})} disabled={sku} />
+              <TextField id="txtName" label="Nome" variant="outlined" value={values.name} onChange={e => setValues({...values, name: e.target.value})} />
+              <TextField id="txtDescr" label="Descrição" variant="outlined" value={values.descr} onChange={e => setValues({...values, descr: e.target.value})} />
+              <TextField id="txtQuantity" label="Quantidade" type="number" variant="outlined" value={values.quantity} onChange={e => setValues({...values, quantity: e.target.value})} />
+              <TextField id="txtPrice" label="Preço" type="number" variant="outlined" value={values.price} onChange={e => setValues({...values, price: e.target.value})} />
+              <TextField id="txtImage" label="Imagem (link)" variant="outlined" size="255" value={values.image} onChange={e => checkImage(e.target.value)} />
           
         <Avatar className="avatarFood"
           alt="food"

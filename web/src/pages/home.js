@@ -6,13 +6,10 @@ import UserContext from '../contexts/UserContext';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import ListContext from '../contexts/ListContext';
 
 const Home = () => {
     const [ data, setData ] = useState([]);
     const [ user ] = useContext(UserContext);
-
-    const list = useContext(ListContext);
 
     const getProducts = async () => {
         await api.get('products')
@@ -32,7 +29,6 @@ const Home = () => {
             
             <div className="container text-center">    
                 <h3>Olá { user.name || `Visitante` }, faça seu pedido!</h3><br />
-                <h3>{console.log(list)}</h3><br />
 
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>

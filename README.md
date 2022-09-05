@@ -40,12 +40,12 @@
 &nbsp;
 
 ### a aplicação pode ser acessada através do link:
-- http://ecomm-teste.s3-website-us-east-1.amazonaws.com/
+- http://ecomm-teste2.s3-website-us-east-1.amazonaws.com
     - FRONT armazenado em instância Amazon S3;
     - Banco de Dados instanciado no AWS RDS:
-        - database.c1pcbwgspp7k.us-east-1.rds.amazonaws.com:3306;
+        - database.c4gffxjofhme.us-east-1.rds.amazonaws.com:3306;
     - API instanciada em EC2 AWS:
-        - http://3.231.26.124:8080;
+        - http://54.205.178.231:8080;
 
 &nbsp;
 

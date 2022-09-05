@@ -53,28 +53,31 @@ const ListOrder = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>
               <TableRow>
-                  <StyledTableCell align="left">Pedido</StyledTableCell>
-                  <StyledTableCell align="left">Total</StyledTableCell>
-                  <StyledTableCell align="center">Cliente</StyledTableCell>
+                  <StyledTableCell align="center">Pedido</StyledTableCell>
+                  <StyledTableCell align="center">Total</StyledTableCell>
+                  <StyledTableCell align="left">Cliente</StyledTableCell>
                   <StyledTableCell align="center">Data</StyledTableCell>
                   <StyledTableCell align="center">Itens</StyledTableCell>
-                  <StyledTableCell align="right" />
+                  <StyledTableCell align="center" />
               </TableRow>
               </TableHead>
               <TableBody>
               {data.map((item) => (
                   <StyledTableRow key={item.id}>
 
-                  <StyledTableCell align="left">{item.id}</StyledTableCell>
+                  <StyledTableCell align="center">{item.id}</StyledTableCell>
 
-                  <StyledTableCell align="left" component="th" scope="row">
+                  <StyledTableCell align="center" component="th" scope="row">
                       {item.total.toFixed(2)}
                   </StyledTableCell>
-                  <StyledTableCell align="center">{item.customer.name}</StyledTableCell>
+                  <StyledTableCell align="left">{item.customer.name}</StyledTableCell>
                   <StyledTableCell align="center">{new Date(item.date).toLocaleDateString('pt-BR')}</StyledTableCell>
-                  <StyledTableCell align="center">{item.items.map(i => <StyledTableCell align="center">             
-                    {i.quantity} x {i.sku}</StyledTableCell>)}</StyledTableCell>
-                  <StyledTableCell align="right"><button onClick={() => deleteOrder(item.id)}>Excluir</button></StyledTableCell>
+
+                  <StyledTableCell align="center">{item.items.map(i =>
+                      <div id={i.id}>{`${i.quantity} x ${i.sku}`}</div>)}
+                  </StyledTableCell>
+                  
+                  <StyledTableCell align="center"><button onClick={() => deleteOrder(item.id)}>Excluir</button></StyledTableCell>
                   </StyledTableRow>
               ))}
               </TableBody>

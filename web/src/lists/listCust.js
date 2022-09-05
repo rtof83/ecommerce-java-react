@@ -62,7 +62,7 @@ const ListCust = () => {
               </TableHead>
               <TableBody>
               {data.map((item) => (
-                  <StyledTableRow key={item._id}>
+                  <StyledTableRow key={item.id}>
                   <StyledTableCell align="center" component="th" scope="row">
                       {item.name}
                   </StyledTableCell>

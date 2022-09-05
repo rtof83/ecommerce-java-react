@@ -13,15 +13,15 @@ const Carousel = () => {
             {/* <!-- Wrapper for slides --> */}
             <div className="carousel-inner" height role="listbox">
                 <div className="item active">
-                    <img src="https://ecomm-teste.s3.amazonaws.com/assets/01.jpg" alt="store" />    
+                    <img src="https://ecomm-teste2.s3.amazonaws.com/assets/01.jpg" alt="store" />    
                 </div>
 
                 <div className="item">
-                    <img src="https://ecomm-teste.s3.amazonaws.com/assets/02.jpg" alt="store" />
+                    <img src="https://ecomm-teste2.s3.amazonaws.com/assets/02.jpg" alt="store" />
                 </div>
 
                 <div className="item">
-                    <img src="https://ecomm-teste.s3.amazonaws.com/assets/03.webp" alt="store" />   
+                    <img src="https://ecomm-teste2.s3.amazonaws.com/assets/03.webp" alt="store" />   
                 </div>
             </div>
 

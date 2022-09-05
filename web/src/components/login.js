@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField';
 const Login = () => {
 
     const [ values, setValues ] = useState({ email: '', password: '' });
-    const [ user, setUser ] = useContext(UserContext);
+    const [ setUser ] = useContext(UserContext);
     const { cart } = useParams();
     const navigate = useNavigate();
 

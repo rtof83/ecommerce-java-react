@@ -53,7 +53,7 @@ const Cart = () => {
 
         api.post('/orders', orderPost)
           .then(setList([]))
-          .then(navigate('/listOrder'))
+          .then(() => navigate('/listOrder'))
           .catch(e => console.log(e));
       }
     }

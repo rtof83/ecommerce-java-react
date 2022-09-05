@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import checkCPF from '../components/cpf';
+import InputMask from 'react-input-mask';
 
 import api from '../api';
 
@@ -22,14 +23,16 @@ const Customer = () => {
                                              cpf: '',
                                              phone: '',
                                              birth: '',
-                                             password: '' });
+                                             password: '',
+                                             showPassword: '' });
 
     const navigate = useNavigate();
     const { id } = useParams();
 
     const insertCustomer = async () => {
-      if (!checkCPF(values.cpf)) {
-        return alert('CPF inválido. O campo deve conter 9 dígitos sem pontos e traço.');
+      const cpf = values.cpf.replace(/[^\w\s]/gi, '');
+      if (!checkCPF(cpf)) {
+        return alert('CPF inválido!');
       }
 
       if (!values.name || !values.address || !values.cpf) {
@@ -49,22 +52,22 @@ const Customer = () => {
           const customer = { name: values.name,
                              address: values.address,
                              email: values.email,
-                             cpf: values.cpf,
+                             cpf: cpf,
                              phone: values.phone,
                              birth: values.birth,
                              password: (values.password) };
                            
           if (id) { 
-            if (checkEmail !== 0 && checkEmail != id) {
+            if (checkEmail !== 0 && checkEmail !== parseInt(id)) {
              alert('Email cadastrado em outro registro');
             } else {
               await api.put(`customers/${id}`, customer)
-                .then(navigate('/listCust'))
+                .then(() => navigate('/listCust'))
                 .catch(e => console.log(e));
             }
           } else {
             await api.post('customers', customer)
-              .then(navigate('/listCust'))
+              .then(() => navigate('/listCust'))
               .catch(e => console.log(e));
           }
         }
@@ -115,18 +118,25 @@ const Customer = () => {
               alignItems="stretch"
               className="gridCustomer">
 
-            { id && <TextField id="outlined-basic" label="Id" variant="outlined" value={id} disabled /> }
-            <TextField required id="outlined-basic" label="Nome" variant="outlined" value={values.name} onChange={e => setValues({...values, name: e.target.value})} />
-            <TextField id="outlined-basic" label="Endereço" variant="outlined" value={values.address} onChange={e => setValues({...values, address: e.target.value})} />
-            <TextField required id="outlined-basic" label="E-mail" variant="outlined" value={values.email} onChange={e => setValues({...values, email: e.target.value})} />
-            <TextField required id="outlined-basic" label="CPF" type="number" size="11" variant="outlined" value={values.cpf} onChange={e => setValues({...values, cpf: e.target.value})} />
-            <TextField required id="outlined-basic" label="Telefone" size="16" variant="outlined" value={values.phone} onChange={e => setValues({...values, phone: e.target.value})} />
-            <TextField type="date" required id="outlined-basic" label="Nascimento" variant="outlined" value={values.birth} onChange={e => setValues({...values, birth: e.target.value})} />
+            { id && <TextField id="txtId" label="Id" variant="outlined" value={id} disabled /> }
+            <TextField required id="txtName" label="Nome" variant="outlined" value={values.name} onChange={e => setValues({...values, name: e.target.value})} />
+            <TextField id="txtAddress" label="Endereço" variant="outlined" value={values.address} onChange={e => setValues({...values, address: e.target.value})} />
+            <TextField required id="txtEmail" label="E-mail" variant="outlined" value={values.email} onChange={e => setValues({...values, email: e.target.value})} />            
+
+            <InputMask value={values.cpf} onChange={e => setValues({...values, cpf: e.target.value})} mask="999.999.999-99" maskChar=" ">
+              {() => <TextField required id="txtCPF" label="CPF" variant="outlined" />}
+            </InputMask>
+
+            <InputMask value={values.phone} onChange={e => setValues({...values, phone: e.target.value})} mask="(99) 99999-9999" maskChar=" ">
+              {() => <TextField required id="txtPhone" label="Telefone" variant="outlined" />}
+            </InputMask>
+
+            <TextField type="date" required id="txtBirth" label="Nascimento" variant="outlined" value={values.birth} onChange={e => setValues({...values, birth: e.target.value})} />
 
             <FormControl required variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
               <OutlinedInput
-                id="outlined-adornment-password"
+                id="txtPassword"
                 type={values.showPassword ? 'text' : 'password'}
                 value={values.password}
                 onChange={e => setValues({...values, password: e.target.value})}
