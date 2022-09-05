@@ -10,14 +10,14 @@ import TextField from '@mui/material/TextField';
 const Login = () => {
 
     const [ values, setValues ] = useState({ email: '', password: '' });
-    const [ setUser ] = useContext(UserContext);
+    const [ , setUser ] = useContext(UserContext);
+
     const { cart } = useParams();
     const navigate = useNavigate();
 
     const getUser = async () => {
         await api.post('customers/login', { email: values.email, password: values.password })
           .then(({ data }) => {
-            console.log(data);
             if (data.length > 0) {
               setUser(data[0]);
               cart ? navigate('/cart') : navigate('/');
