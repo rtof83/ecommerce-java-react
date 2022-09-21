@@ -46,8 +46,6 @@ const Cart = () => {
 
         const orderPost = { customerId: user[0].id,
                             address: user[0].address,
-                            // total: total,
-                            // date: todayDate,
                             payment: payment,
                             items: itemsPost }
 
@@ -55,9 +53,9 @@ const Cart = () => {
           .then(setList([]))
           .then(() => navigate('/listOrder'))
           .catch(e => console.log(e));
-      }
-    }
-  }
+      };
+    };
+  };
 
   const counter = (sku, max, func) => {
     const index = list.findIndex(element => element.sku === sku);
@@ -75,20 +73,20 @@ const Cart = () => {
     });
 
     setList(newList);
-  }
+  };
 
   useEffect(() => {
     let sum = 0
     for (let i = 0; i < list.length; i++) {
       sum += list[i].quantity * list[i].price;
-    }
+    };
 
     setTotal(sum.toFixed(2));
   }, [list]);
 
   const removeItem = (sku) => {
     setList(list.filter(item => item.sku !== sku));
-  }
+  };
 
   return (
     <div className='cartContainer'>
@@ -127,7 +125,6 @@ const Cart = () => {
                 <MenuItem value={'Pix'}>Pix</MenuItem>
               </Select>
             </FormControl>
-
             
           </Grid>
           </>}
@@ -200,9 +197,8 @@ const Cart = () => {
       </Box>
     </>}
     </div>
-
   );
-}
+};
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',

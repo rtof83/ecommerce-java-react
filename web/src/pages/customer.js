@@ -56,7 +56,7 @@ const Customer = () => {
                              phone: values.phone,
                              birth: values.birth,
                              password: (values.password) };
-                           
+
           if (id) { 
             if (checkEmail !== 0 && checkEmail !== parseInt(id)) {
              alert('Email cadastrado em outro registro');
@@ -69,10 +69,10 @@ const Customer = () => {
             await api.post('customers', customer)
               .then(() => navigate('/listCust'))
               .catch(e => console.log(e));
-          }
-        }
-      }
-    }
+          };
+        };
+      };
+    };
     
       const handleClickShowPassword = () => {
         setValues({
@@ -98,8 +98,8 @@ const Customer = () => {
                           password: data.password });
             })
             .catch(e => console.log(e));
-        }
-      }
+        };
+      };
 
       useEffect(() => {
         getCustomer();

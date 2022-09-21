@@ -32,7 +32,7 @@ const Product = () => {
       image.onerror = () => {
         setShowImage(Foods);
       }
-    }
+    };
 
     const insertProduct = async () => {
       if (!values.sku || !values.name || !values.quantity || !values.price) {
@@ -45,17 +45,12 @@ const Product = () => {
                           price: values.price,
                           image: values.image };
 
-        if (sku) {
-          await api.put(`products/${sku}`, product)
-            .then(() => navigate('/listProd'))
-            .catch(e => console.log(e));
-        } else {
-          await api.post('products', product)
-            .then(() => navigate('/listProd'))
-            .catch(e => console.log(e));;
-        }
-      }
-    }
+        const query = sku ? api.put(`products/${sku}`, product) : api.post('products', product);
+        await query
+          .then(() => navigate('/listProd'))
+          .catch(e => console.log(e));
+      };
+    };
 
     const getProduct = async () => {
       if (sku) {
@@ -69,8 +64,8 @@ const Product = () => {
                         image: data.image });
           })
           .catch(e => console.log(e));
-      }
-    }
+      };
+    };
 
     useEffect(() => {
       getProduct();

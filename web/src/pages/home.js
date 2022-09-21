@@ -17,7 +17,7 @@ const Home = () => {
                 setData(data)
             })
             .catch(e => console.log(e));
-    }
+    };
 
     useEffect(() => {
         getProducts();
@@ -48,6 +48,6 @@ const Home = () => {
             </div>
         </>
     )
-}
+};
 
 export default Home;
