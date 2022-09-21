@@ -45,7 +45,7 @@
     - Banco de Dados instanciado no AWS RDS:
         - database.c4gffxjofhme.us-east-1.rds.amazonaws.com:3306;
     - API instanciada em EC2 AWS:
-        - http://54.205.178.231:8080;
+        - http://34.235.154.60:8080;
 
 &nbsp;
 
