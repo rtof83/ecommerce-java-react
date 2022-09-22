@@ -6,17 +6,24 @@ import UserContext from '../contexts/UserContext';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Home = () => {
     const [ data, setData ] = useState([]);
     const [ user ] = useContext(UserContext);
 
+    const [ loading, setLoading ] = useState(false);
+
     const getProducts = async () => {
+        setLoading(true);
+
         await api.get('products')
-            .then(({ data }) => {
-                setData(data)
+            .then(({ data }) => {        
+                setData(data);
             })
             .catch(e => console.log(e));
+
+            setLoading(false);
     };
 
     useEffect(() => {
@@ -30,6 +37,7 @@ const Home = () => {
             <div className="container text-center">    
                 <h3>Olá { user.name || `Visitante` }, faça seu pedido!</h3><br />
 
+                { loading ? <h3><CircularProgress /></h3> : <>
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                         { data.map((item, index) => (
@@ -44,6 +52,7 @@ const Home = () => {
                         ))}
                     </Grid>
                 </Box>
+                </> }
 
             </div>
         </>

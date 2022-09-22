@@ -23,27 +23,28 @@ const ListProd = () => {
     const [ loading, setLoading ] = useState(false);
 
     const getData = async () => {
-        setLoading(true);
+      setLoading(true);
 
-        await api.get('products')
-          .then(({ data }) => {
-            setData(data);
-            setLoading(false);
-          })
-          .catch(e => console.log(e));
-      }
+      await api.get('products')
+        .then(({ data }) => {
+          setData(data);
+        })
+        .catch(e => console.log(e));
+
+      setLoading(false);
+    };
     
-      useEffect(() => {    
-        getData();
-      }, []);
+    useEffect(() => {    
+      getData();
+    }, []);
 
-      const deleteProduct = async (sku, name) => {
-        if (window.confirm(`Excluir ${name}?`)) {
-          await api.delete(`products/${sku}`)
-            .then(() => getData())
-            .catch(e => console.log(e));
-        }
-      }
+    const deleteProduct = async (sku, name) => {
+      if (window.confirm(`Excluir ${name}?`)) {
+        await api.delete(`products/${sku}`)
+          .then(() => getData())
+          .catch(e => console.log(e));
+      };
+    };
 
       // const getValue = (value) => {
       //   value >= 0 ? (value).toLocaleString('pt-BR') : 
@@ -52,8 +53,7 @@ const ListProd = () => {
 
   return (
       <div className="tableProduct">
-
-        {/* { loading && <h3><CircularProgress /></h3> } */}
+        
         {/* { data.length === 0 ? <h3>Nenhum registro encontrado</h3> : <> */}
 
         { loading ? <h3><CircularProgress /></h3> : <>

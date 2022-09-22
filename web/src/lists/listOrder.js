@@ -22,25 +22,27 @@ const ListOrder = () => {
     const getData = async () => {
       setLoading(true);
 
-        await api.get('orders')
-          .then(({ data }) => {
-            setData(data);
-            setLoading(false);
-          })
-          .catch(e => console.log(e));
-      };
-    
-      useEffect(() => {    
-        getData();
-      }, []);
+      await api.get('orders')
+        .then(({ data }) => {
+          setData(data);
+          setLoading(false);
+        })
+        .catch(e => console.log(e));
 
-      const deleteOrder = async (id) => {
-        if (window.confirm(`Excluir pedido ${id}?`)) {
-          await api.delete(`orders/${id}`)
-            .then(() => getData())
-            .catch(e => console.log(e));
-        }
+        setLoading(false);
+    };
+    
+    useEffect(() => {    
+      getData();
+    }, []);
+
+    const deleteOrder = async (id) => {
+      if (window.confirm(`Excluir pedido ${id}?`)) {
+        await api.delete(`orders/${id}`)
+          .then(() => getData())
+          .catch(e => console.log(e));
       }
+    };
 
   return (
       <div className="tableProduct">
