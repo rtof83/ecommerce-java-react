@@ -1,5 +1,6 @@
 package com.api.store.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class Order {
     @Column(name = "total", nullable = false)
     private Float total;
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @Column(name = "date", nullable = false)
     private Date date;
 
