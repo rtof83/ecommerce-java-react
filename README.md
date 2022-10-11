@@ -51,6 +51,7 @@
 
 ### Implementações API:
 - [Collections Postman](https://github.com/rtof83/ecommerce-java-react/blob/main/samples/ecommerce.postman_collection.json);
+- Swagger: {baseURL}/swagger-ui.html
 
 - Rotas de acesso (para os métodos GET, POST, DELETE E PUT):
     - {baseURL}/api/customers -> retorna, cria, atualiza, exclui clientes;
