@@ -49,21 +49,42 @@
 
 ### Implementações API:
 - [Collections Postman](https://github.com/rtof83/ecommerce-java-react/blob/main/samples/ecommerce.postman_collection.json);
-- Swagger: {baseURL}/swagger-ui.html
+- [Swagger:](https://github.com/rtof83/ecommerce-java-react/blob/main/api/src/main/java/com/api/store/config/SwaggerConfig.java) {baseURL}/swagger-ui.html
 
-- Rotas de acesso (para os métodos GET, POST, DELETE E PUT):
-    - {baseURL}/api/customers -> retorna, cria, atualiza, exclui clientes;
-    - {baseURL}/api/products -> retorna, cria, atualiza, exclui produtos;
+&nbsp;
 
-- Rotas de acesso (para os métodos GET, POST E DELETE):
-    - {baseURL}/orders -> retorna, cria e exclui pedidos;
+- Rotas de acesso:
 
-- Rotas de busca:
-    - {baseURL}/api/{rota}/:id -> retorna registro por ID;
-    - {baseURL}/api/products/sku -> retorna produto por sku;
+    - POST
+        - {baseURL}/customers/login -> retorna cliente por email e senha;
+        - {baseURL}/customers/checkEmail -> verifica se email existe;
+        - {baseURL}/customers -> cadastra cliente;
+        - {baseURL}/products -> cadastra produto;
+        - {baseURL}/orders -> cadastra pedido;
+
+    - GET
+        - {baseURL}/customers -> retorna todos os clientes;
+        - {baseURL}/customers/{id} -> retorna cliente por id;
+
+        - {baseURL}/products -> retorna todos os produtos;
+        - {baseURL}/products/{id} -> retorna produto por id;
+
+        - {baseURL}/orders -> retorna todos os pedidos;
+        - {baseURL}/orders/{id} -> retorna pedido por id;
+
+    - PUT
+        - {baseURL}/customers/{id} -> atualiza cliente;
+        - {baseURL}/products/{id} -> atualiza produto;
+
+    - DELETE
+        - {baseURL}/customers/{id} -> exclui cliente;
+        - {baseURL}/products/{id} -> exclui produto;
+        - {baseURL}/orders/{id} -> atualiza pedido;
+
+&nbsp;
 
 - Inserção de pedidos:
-    - total do pedido e data e hora atual inseridos através da API;
+    - o total do pedido e a data e hora atual são inseridos através da API;
     - a quantidade de produtos é atualizada de forma automatizada (é verificado se a quantidade solicitada é igual ou menor que o estoque);
 
     &nbsp;
