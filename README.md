@@ -40,11 +40,9 @@
 &nbsp;
 
 ### a aplicação pode ser acessada através do link:
-- http://ecomm-teste2.s3-website-us-east-1.amazonaws.com
+- http://ecomm-mysql-java.s3-website-us-east-1.amazonaws.com
     - FRONT armazenado em instância Amazon S3;
-    - Banco de Dados instanciado no AWS RDS:
-        - database.c4gffxjofhme.us-east-1.rds.amazonaws.com:3306;
-    - API instanciada em EC2 AWS:
+    - API e Banco de Dados instanciados em EC2 AWS:
         - http://34.235.154.60:8080;
 
 &nbsp;
